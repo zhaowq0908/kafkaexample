@@ -1,11 +1,12 @@
 package com.it.kafka.receiver;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
+import java.util.concurrent.CountDownLatch;
+
 
 /**
  * @author: zhaowq
@@ -14,20 +15,16 @@ import java.util.Optional;
  */
 @Component
 @Slf4j
+@KafkaListener(topics = {"test"})
 public class KafkaReceiver {
 
-    @KafkaListener(topics = {"test"})
-    public void listen(ConsumerRecord<?, ?> record) {
+    public static CountDownLatch latch;
 
-        Optional<?> kafkaMessage = Optional.ofNullable(record.value());
-
-        if (kafkaMessage.isPresent()) {
-
-            Object message = kafkaMessage.get();
-
-            log.info("----------------- record =" + record);
-            log.info("------------------ message =" + message);
+    @KafkaHandler
+    public void onMessage(String message) {
+        log.info("receiver message:{}", message);
+        if (latch != null) {
+            latch.countDown();
         }
-
     }
 }

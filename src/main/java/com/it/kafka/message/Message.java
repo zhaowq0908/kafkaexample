@@ -1,8 +1,10 @@
 package com.it.kafka.message;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,12 +12,15 @@ import java.util.Date;
  * @since: 2018/7/6 15:01
  * @description:
  */
-@Data
 @Setter
-public class Message {
-    private Long id;    //id
+@Getter
+@Data
+public class Message implements Serializable {
+    private static final long serialVersionUID = -1L;
 
-    private String msg; //消息
+    private Long id;
 
-    private Date sendTime;  //时间戳
+    private String msg;
+
+    private Date sendTime;
 }
