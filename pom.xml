@@ -51,42 +51,6 @@
         </dependency>
     </dependencies>
 
-    <distributionManagement>
-        <repository>
-            <id>release</id>
-            <name>Releases</name>
-            <url>http://10.10.3.226:8081/repository/maven-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshot</id>
-            <name>Snapshots</name>
-            <url>http://10.10.3.226:8081/repository/maven-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
-
-    <repositories>
-        <repository>
-            <id>release</id>
-            <url>http://10.10.3.226:8081/repository/maven-releases/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>snapshot</id>
-            <url>http://10.10.3.226:8081/repository/maven-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <build>
         <plugins>
             <plugin>
